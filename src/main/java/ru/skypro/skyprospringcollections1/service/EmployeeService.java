@@ -24,6 +24,15 @@ public class EmployeeService {
         return employee;
     }
 
+    public Employee addEmployee(String firstName, String lastName, Integer department, int salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
+        if (employees.containsKey(employee.getFullName())) {
+            throw new EmployeeAlreadyAddedException("Employee is Already Added");
+        }
+        employees.put(employee.getFullName(), employee);
+        return employee;
+    }
+
     public Employee removeEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         if (employees.containsKey(employee.getFullName())) {

@@ -24,6 +24,14 @@ public class EmployeeController {
         return employeeService.addEmployee(firstName, lastName);
     }
 
+    @GetMapping("/add-by-department")
+    public Employee add(@RequestParam String firstName,
+                        @RequestParam String lastName,
+                        @RequestParam Integer department,
+                        @RequestParam Integer salary) {
+        return employeeService.addEmployee(firstName, lastName, department, salary);
+    }
+
     @GetMapping("/remove")
     public Employee remove(@RequestParam String firstName,
                            @RequestParam String lastName) {
