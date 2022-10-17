@@ -18,7 +18,7 @@ GET http://localhost:8080/employee/remove?firstName=Ivan&lastName=Ivanov
 
 
 ###
-GET http://localhost:8080/employee/add-by-department?firstName=Ivan&lastName=Ivanov&department=1&salary=55000
+GET http://localhost:8080/employee/add-by-department?firstName=IvAn&lastName=IvanOV&department=1&salary=55000
 
 ###
 GET http://localhost:8080/employee/add-by-department?firstName=Sidor&lastName=Sidorov&department=1&salary=75000

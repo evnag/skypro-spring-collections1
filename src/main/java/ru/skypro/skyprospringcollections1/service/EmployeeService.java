@@ -10,8 +10,10 @@ import java.util.*;
 @Service
 public class EmployeeService {
     private final Map<String, Employee> employees;
+    private final ValidatorService validatorService;
 
-    public EmployeeService() {
+    public EmployeeService(ValidatorService validatorService) {
+        this.validatorService = validatorService;
         this.employees = new HashMap<>();
     }
 
@@ -25,7 +27,11 @@ public class EmployeeService {
     }
 
     public Employee addEmployee(String firstName, String lastName, Integer department, int salary) {
-        Employee employee = new Employee(firstName, lastName, department, salary);
+        Employee employee = new Employee(
+                validatorService.validate(firstName),
+                validatorService.validate(lastName),
+                department,
+                salary);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Employee is Already Added");
         }

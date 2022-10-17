@@ -19,13 +19,20 @@ public class DepartmentService {
     public Optional<Employee> getEmployeeWithMaxSalaryByDepartment(Integer department) {
         return employeeService.findAll().stream()
                 .filter(employee -> employee.getDepartment().equals(department))
-                .max(Comparator.comparing(employee -> employee.getSalary()));
+                .max(Comparator.comparing(Employee::getSalary));
     }
+
+//    public Employee getEmployeeWithMaxSalaryByDepartment(Integer department) {
+//        return employeeService.findAll().stream()
+//                .filter(employee -> employee.getDepartment().equals(department))
+//                .max(Comparator.comparing(employee -> employee.getSalary()))
+//                .orElseThrow(EmployeeNotFoundException::new);
+//    }
 
     public Optional<Employee> getEmployeeWithMinSalaryByDepartment(Integer department) {
         return employeeService.findAll().stream()
                 .filter(employee -> employee.getDepartment().equals(department))
-                .min(Comparator.comparing(employee -> employee.getSalary()));
+                .min(Comparator.comparing(Employee::getSalary));
     }
 
     public List<Employee> getAllEmployeesByDepartment(Integer department) {
@@ -38,4 +45,9 @@ public class DepartmentService {
         return employeeService.findAll().stream()
                 .collect(Collectors.toList());
     }
+
+//    public Map<Integer, List<Employee>> getOrderedListOfEmployees() {
+//        return employeeService.findAll().stream()
+//                .collect(Collectors.groupingBy(Employee::getDepartment));
+//    }
 }
