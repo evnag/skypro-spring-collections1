@@ -1,0 +1,8 @@
+GET http://localhost:8080/store/order/add?id=1&id=2&id=3
+
+###
+GET http://localhost:8080/store/order/add?id=4,5,6
+
+###
+GET http://localhost:8080/store/order/get
+Cookie: JSESSIONID=D4C1359C6936296C16AC96F6FD3AFC14
