@@ -6,7 +6,7 @@ import ru.skypro.skyprospringcollections1.exception.EmployeeAlreadyAddedExceptio
 import ru.skypro.skyprospringcollections1.exception.EmployeeNotFoundException;
 import ru.skypro.skyprospringcollections1.service.EmployeeService;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -45,7 +45,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public Collection<Employee> findAll() {
+    public List<Employee> findAll() {
         return employeeService.findAll();
     }
 

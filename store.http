@@ -5,4 +5,4 @@ GET http://localhost:8080/store/order/add?id=4,5,6
 
 ###
 GET http://localhost:8080/store/order/get
-Cookie: JSESSIONID=3E7A1618BF2FE1C2794963B8326DA4C3
+Cookie: JSESSIONID=D4C1359C6936296C16AC96F6FD3AFC14

@@ -28,8 +28,8 @@ public class EmployeeService {
 
     public Employee addEmployee(String firstName, String lastName, Integer department, int salary) {
         Employee employee = new Employee(
-                validatorService.validate(firstName),
-                validatorService.validate(lastName),
+                validatorService.validateFirstName(firstName),
+                validatorService.validateLastName(lastName),
                 department,
                 salary);
         if (employees.containsKey(employee.getFullName())) {
@@ -40,22 +40,30 @@ public class EmployeeService {
     }
 
     public Employee removeEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if (employees.containsKey(employee.getFullName())) {
-            return employees.remove(employee.getFullName());
-        }
-        throw new EmployeeNotFoundException("Employee Not Found");
+        Employee employee = employees.values().stream()
+                .filter(e -> e.getFirstName().equals(firstName) && e.getLastName().equals(lastName))
+                .findFirst()
+                .orElseThrow(EmployeeNotFoundException::new);
+        employees.remove(employee.getFullName());
+        return employee;
     }
+
+//    public Employee findEmployee(String firstName, String lastName) {
+//        Employee employee = new Employee(firstName, lastName);
+//        if (employees.containsKey(employee.getFullName())) {
+//            return employees.get(employee.getFullName());
+//        }
+//        throw new EmployeeNotFoundException("Employee Not Found");
+//    }
 
     public Employee findEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if (employees.containsKey(employee.getFullName())) {
-            return employees.get(employee.getFullName());
-        }
-        throw new EmployeeNotFoundException("Employee Not Found");
+        return employees.values().stream()
+                .filter(employee -> employee.getFirstName().equals(firstName) && employee.getLastName().equals(lastName))
+                .findFirst()
+                .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    public Collection<Employee> findAll() {
+    public List<Employee> findAll() {
         return new ArrayList<>(employees.values());
     }
 }

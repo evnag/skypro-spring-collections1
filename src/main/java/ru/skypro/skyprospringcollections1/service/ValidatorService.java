@@ -8,10 +8,21 @@ import ru.skypro.skyprospringcollections1.exception.IncorrectParamException;
 @Service
 public class ValidatorService {
 
-    public String validate(String param) {
-        if (!StringUtils.isAlpha(param)) {
+    public String validateFirstName(String firstName) {
+        if (!StringUtils.isAlpha(firstName)) {
             throw new IncorrectParamException();
         }
-        return StringUtils.capitalize(param.toLowerCase());
+        return StringUtils.capitalize(firstName.toLowerCase());
+    }
+
+    public String validateLastName(String lastName) {
+        String[] lastNames = lastName.split("-");
+        for (int i = 0; i < lastNames.length; i++) {
+            if (!StringUtils.isAlpha(lastNames[i])) {
+                throw new IncorrectParamException();
+            }
+            lastNames[i] = StringUtils.capitalize(lastName.toLowerCase());
+        }
+        return String.join("-", lastNames);
     }
 }
